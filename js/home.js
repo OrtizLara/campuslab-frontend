@@ -1,0 +1,2 @@
+import {initSite,projectCard,$,notice} from './ui.js';import {listProjects} from './api.js';
+initSite();(async()=>{try{const a=await listProjects();$('#home-projects').innerHTML=a.slice(0,3).map(p=>`<div class="col-md-6 col-lg-4">${projectCard(p)}</div>`).join('')||'<p>Todavía no hay proyectos publicados.</p>';$('#project-count').textContent=a.length+' proyectos para explorar'}catch(e){$('#home-projects').innerHTML='<p class="text-muted">No se pudo cargar el catálogo.</p>';notice(e.message)}})();
